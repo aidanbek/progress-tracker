@@ -1,5 +1,9 @@
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+.project-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.task-link {
+    color: #000;
+    text-decoration: none;
 }
