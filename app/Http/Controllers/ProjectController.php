@@ -12,11 +12,7 @@ class ProjectController extends Controller
     {
 //        dd(
             $projects = Project::Parent()
-                ->with(
-                    'tasks',
-                    'allChildProjects',
-                    'allChildProjects.tasks'
-                )
+                ->with('tasks','allChildProjects', 'allChildProjects.tasks')
                 ->orderBy('title')
                 ->get()
                 ->toArray();

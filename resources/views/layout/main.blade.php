@@ -9,6 +9,5 @@
     <div class="container mt-3">
         @yield('content')
     </div>
-{{--    @include('layout.partials.footer')--}}
     @include('layout.partials.footer-scripts')
 </body>

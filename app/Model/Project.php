@@ -8,6 +8,14 @@ class Project extends Model
 {
     protected $table = 'project';
     protected $primaryKey = 'project_id';
+    protected $appends = array(
+        'completion_percentage',
+        'task_left',
+        'child_task_count',
+        'child_project_count',
+        'project_completion_percentage',
+        'task_completion_percentage'
+    );
 
     public function scopeParent($query)
     {
@@ -42,5 +50,75 @@ class Project extends Model
     public function allParentProjects()
     {
         return $this->parentProject()->with('allParentProjects');
+    }
+
+    public function getCompletionPercentageAttribute()
+    {
+        return $this->getProjectCompletionPercentageAttribute() + $this->getTaskCompletionPercentageAttribute();
+    }
+
+    public function completionTotalCount()
+    {
+        return $this->tasks()->get()->count() + $this->childProjects()->get()->count();
+    }
+
+    public function getTaskCompletionPercentageAttribute()
+    {
+        $tasks = $this->tasks()->get()->toArray();
+
+        if (count($tasks) === 0) return 0;
+
+        $completedTaskCount = 0;
+
+        foreach ($tasks as $task) {
+            $completedTaskCount += $task['completed'];
+        }
+
+        return round($completedTaskCount / $this->completionTotalCount() * 100);
+    }
+
+    public function getProjectCompletionPercentageAttribute()
+    {
+        $projects = $this->childProjects()->get()->toArray();
+
+        $projectsCount = count($projects);
+
+        if (count($projects) === 0) return 0;
+
+        $completedProjectPercentage = 0;
+
+        foreach ($projects as $project) {
+            $completedProjectPercentage += round($project['completion_percentage'] / $this->completionTotalCount());
+        }
+
+        return $completedProjectPercentage;
+    }
+
+    public function getChildTaskCountAttribute()
+    {
+        return count($this->tasks()->get()->toArray());
+    }
+
+    public function getChildProjectCountAttribute()
+    {
+        return count($this->childProjects()->get()->toArray());
+    }
+
+    public function getTaskLeftAttribute()
+    {
+        $tasks = $this
+            ->tasks()
+            ->get()
+            ->toArray();
+
+        $taskLeft = count($tasks);
+
+        if ($taskLeft === 0) return 0;
+
+        foreach ($tasks as $task) {
+            $taskLeft -= $task['completed'];
+        }
+
+        return $taskLeft;
     }
 }
