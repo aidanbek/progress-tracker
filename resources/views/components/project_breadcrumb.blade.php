@@ -16,7 +16,7 @@ function getBreadcrumbLinks($project)
 ?>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('projects.index')}}">Проекты</a></li>
+        <li class="breadcrumb-item"><a href="{{route('projects.index')}}">Все проекты</a></li>
         <?php $links = array_reverse(getBreadcrumbLinks($project)); ?>
         @foreach($links as $link)
             <li class="breadcrumb-item"><a href="{{$link['route']}}">{{$link['title']}}</a></li>

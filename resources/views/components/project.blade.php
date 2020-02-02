@@ -24,6 +24,10 @@
                     </div>
                 </div>
 
+                <div class="card-footer">
+                    @include('components.add_project')
+                </div>
+
             </div>
         </div>
     </div>

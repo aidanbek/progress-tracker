@@ -45,7 +45,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return redirect(route('projects.index'));
+        return redirect()->back()->withSuccesses('Новый проект добавлен!');
 //            ->with('success', 'Contact saved!');
     }
 }
