@@ -16,6 +16,8 @@ class Project extends Model
         'task_completion_percentage',
         'route'
     );
+    protected $fillable = ['title'];
+    public $timestamps = false;
 
     public function scopeParent($query)
     {
@@ -106,6 +108,6 @@ class Project extends Model
 
     public function getRouteAttribute()
     {
-        return '/project/' . $this['project_id'];
+        return route('projects.show', $this['project_id']);
     }
 }

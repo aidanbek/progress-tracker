@@ -21,7 +21,7 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function project($id)
+    public function show($id)
     {
         $project = Project::where('project_id', $id)
             ->with('tasks', 'childProjects', 'allParentProjects')
@@ -31,5 +31,21 @@ class ProjectController extends Controller
         return view('components.project', [
             'project' => $project
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title'=>'required',
+        ]);
+
+        $project = new Project([
+            'title' => $request->get('title'),
+        ]);
+
+        $project->save();
+
+        return redirect(route('projects.index'));
+//            ->with('success', 'Contact saved!');
     }
 }
