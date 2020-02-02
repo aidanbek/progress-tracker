@@ -1,9 +1,14 @@
-.project-link {
+body {
+    background-color: #e2e6ea;
+}
+
+.project-link, .project-link:hover {
     color: #000;
     text-decoration: none;
 }
 
-.task-link {
+.task-link, .task-link:hover {
     color: #000;
     text-decoration: none;
 }
+

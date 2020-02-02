@@ -10,11 +10,11 @@ class Project extends Model
     protected $primaryKey = 'project_id';
     protected $appends = array(
         'completion_percentage',
-        'task_left',
         'child_task_count',
         'child_project_count',
         'project_completion_percentage',
-        'task_completion_percentage'
+        'task_completion_percentage',
+        'route'
     );
 
     public function scopeParent($query)
@@ -27,24 +27,14 @@ class Project extends Model
         return $query->whereNotNull('parent_project_id');
     }
 
-    public function parentProject()
-    {
-        return $this->belongsTo(Project::class, 'parent_project_id', 'project_id');
-    }
-
-    public function childProjects()
-    {
-        return $this->hasMany(Project::class, 'parent_project_id', 'project_id');
-    }
-
     public function tasks()
     {
         return $this->hasMany(Task::class, 'parent_project_id', 'project_id');
     }
 
-    public function allChildProjects()
+    public function parentProject()
     {
-        return $this->childProjects()->with('allChildProjects', 'allChildProjects.tasks');
+        return $this->belongsTo(Project::class, 'parent_project_id', 'project_id');
     }
 
     public function allParentProjects()
@@ -52,9 +42,24 @@ class Project extends Model
         return $this->parentProject()->with('allParentProjects');
     }
 
-    public function getCompletionPercentageAttribute()
+    public function childProjects()
     {
-        return $this->getProjectCompletionPercentageAttribute() + $this->getTaskCompletionPercentageAttribute();
+        return $this->hasMany(Project::class, 'parent_project_id', 'project_id');
+    }
+
+    public function allChildProjects()
+    {
+        return $this->childProjects()->with('allChildProjects', 'allChildProjects.tasks');
+    }
+
+    public function getChildTaskCountAttribute()
+    {
+        return count($this->tasks()->get()->toArray());
+    }
+
+    public function getChildProjectCountAttribute()
+    {
+        return count($this->childProjects()->get()->toArray());
     }
 
     public function completionTotalCount()
@@ -94,31 +99,13 @@ class Project extends Model
         return $completedProjectPercentage;
     }
 
-    public function getChildTaskCountAttribute()
+    public function getCompletionPercentageAttribute()
     {
-        return count($this->tasks()->get()->toArray());
+        return $this->getProjectCompletionPercentageAttribute() + $this->getTaskCompletionPercentageAttribute();
     }
 
-    public function getChildProjectCountAttribute()
+    public function getRouteAttribute()
     {
-        return count($this->childProjects()->get()->toArray());
-    }
-
-    public function getTaskLeftAttribute()
-    {
-        $tasks = $this
-            ->tasks()
-            ->get()
-            ->toArray();
-
-        $taskLeft = count($tasks);
-
-        if ($taskLeft === 0) return 0;
-
-        foreach ($tasks as $task) {
-            $taskLeft -= $task['completed'];
-        }
-
-        return $taskLeft;
+        return '/project/' . $this['project_id'];
     }
 }

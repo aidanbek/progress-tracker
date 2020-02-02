@@ -8,6 +8,9 @@ class Task extends Model
 {
     protected $table = 'task';
     protected $primaryKey = 'task_id';
+    protected $appends = array(
+        'route'
+    );
 
     public function parentProject()
     {
@@ -17,6 +20,11 @@ class Task extends Model
     public function allParentProjects()
     {
         return $this->parentProject()->with('allParentProjects');
+    }
+
+    public function getRouteAttribute()
+    {
+        return '/task/'.$this['task_id'];
     }
 
 }
