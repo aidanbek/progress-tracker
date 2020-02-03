@@ -18,6 +18,9 @@
                             <div class="card-body pt-0">
                                 @include('components.add_project', ['parent_project_id' => $project['project_id']])
                                 @include('components.add_task', ['parent_project_id' => $project['project_id']])
+                                @if(($project['child_task_count'] + $project['child_project_count']) === 0)
+                                    @include('components.delete_project', ['project' => $project])
+                                @endif
                             </div>
                         </div>
                     </div>

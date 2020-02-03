@@ -40,14 +40,42 @@ class ProjectController extends Controller
             'parent_project_id' => 'nullable|required'
         ]);
 
-        $project = new Project([
-            'title' => $request->get('title'),
-            'parent_project_id' => $request->get('parent_project_id'),
-        ]);
+        dd($request);
 
-        $project->save();
+//        $project = new Project([
+//            'title' => $request->get('title'),
+//            'parent_project_id' => $request->get('parent_project_id'),
+//        ]);
 
-        return redirect()->back()->withSuccesses('Новый проект добавлен!');
+//        $project->save();
+
+//        return redirect()->back()->withSuccesses('Новый проект добавлен!');
 //            ->with('success', 'Contact saved!');
     }
+
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        $project = Project::where('project_id', $id)->first()->toArray();
+
+        if(($project['child_task_count'] + $project['child_project_count']) === 0){
+            Project::where('project_id', $id)->delete();
+        }
+        if (is_null($project['parent_project_id'])) {
+            return redirect()->route('projects.index')->withSuccesses('Проект удален!');
+        } else {
+            return redirect()->route('projects.show', $project['parent_project_id'])->withSuccesses('Проект удален!');
+        }
+
+    }
+
 }
