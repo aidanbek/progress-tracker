@@ -18,7 +18,7 @@
                         <input type="text" class="form-control" name="title" id="project_title">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block" id="createProject">
+                        <button type="submit" class="btn btn-secondary btn-block" id="createProject">
                             Сохранить
                         </button>
                     </div>

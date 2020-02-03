@@ -5,8 +5,7 @@
             <table class="table table-hover mb-0">
                 <thead>
                 <tr>
-                    <th>Название</th>
-                    <th>Статус</th>
+                    <th>Задача</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -15,16 +14,14 @@
                         <td>
                             <a class="project-link" href="{{$task['route']}}">
                                 <h5>
+                                    @if($task['completed'] === 1)
+                                        <i class="fas fa-check-square"></i>
+                                    @else
+                                        <i class="fas fa-square"></i>
+                                    @endif
                                     {{$task['title']}}
                                 </h5>
                             </a>
-                        </td>
-                        <td>
-                            @if($task['completed'] === 1)
-                                <i class="fas fa-check-square"></i>
-                            @else
-                                <i class="fas fa-square"></i>
-                            @endif
                         </td>
                     </tr>
                 @endforeach
