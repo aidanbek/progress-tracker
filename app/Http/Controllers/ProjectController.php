@@ -37,10 +37,12 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title'=>'required',
+            'parent_project_id' => 'nullable|required'
         ]);
 
         $project = new Project([
             'title' => $request->get('title'),
+            'parent_project_id' => $request->get('parent_project_id'),
         ]);
 
         $project->save();

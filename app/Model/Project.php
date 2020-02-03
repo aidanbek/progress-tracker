@@ -16,7 +16,7 @@ class Project extends Model
         'task_completion_percentage',
         'route'
     );
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'parent_project_id'];
     public $timestamps = false;
 
     public function scopeParent($query)

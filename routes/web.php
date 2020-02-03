@@ -11,7 +11,9 @@
 |
 */
 
-Route::resource('projects', 'ProjectController');
 Route::get('/', function(){
     return redirect()->route('projects.index');
 });
+
+Route::resource('projects', 'ProjectController');
+Route::resource('tasks', 'TaskController');

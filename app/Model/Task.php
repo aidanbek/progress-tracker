@@ -11,6 +11,8 @@ class Task extends Model
     protected $appends = array(
         'route'
     );
+    protected $fillable = ['title', 'parent_project_id'];
+    public $timestamps = false;
 
     public function parentProject()
     {
