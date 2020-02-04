@@ -31,7 +31,9 @@ class Project extends Model
 
     public function tasks()
     {
-        return $this->hasMany(Task::class, 'parent_project_id', 'project_id');
+        return $this
+            ->hasMany(Task::class, 'parent_project_id', 'project_id')
+            ->orderBy('task_id');
     }
 
     public function parentProject()
@@ -46,7 +48,9 @@ class Project extends Model
 
     public function childProjects()
     {
-        return $this->hasMany(Project::class, 'parent_project_id', 'project_id');
+        return $this
+            ->hasMany(Project::class, 'parent_project_id', 'project_id')
+            ->orderBy('project_id');
     }
 
     public function allChildProjects()

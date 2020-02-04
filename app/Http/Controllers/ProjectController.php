@@ -37,20 +37,17 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title'=>'required',
-            'parent_project_id' => 'nullable|required'
+            'parent_project_id' => 'nullable'
         ]);
 
-        dd($request);
+        $project = new Project([
+            'title' => $request->get('title'),
+            'parent_project_id' => $request->get('parent_project_id'),
+        ]);
 
-//        $project = new Project([
-//            'title' => $request->get('title'),
-//            'parent_project_id' => $request->get('parent_project_id'),
-//        ]);
+        $project->save();
 
-//        $project->save();
-
-//        return redirect()->back()->withSuccesses('Новый проект добавлен!');
-//            ->with('success', 'Contact saved!');
+        return redirect()->back()->withSuccesses('Новый проект добавлен!');
     }
 
     public function edit($id)

@@ -21,11 +21,29 @@ class TaskController extends Controller
         return view('components.task', ['task' => $task]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title'=>'required',
+            'completed' => 'nullable'
+        ]);
+
+        $task = Task::find($id);
+
+        dd($request->get('completed'));
+
+        $task->title = $request->get('title');
+        $task->completed = $request->get('completed');
+        $task->save();
+
+        return redirect()->back()->withSuccesses('Задача обновлена!');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'title'=>'required',
-            'parent_project_id' => 'nullable|required'
+            'parent_project_id' => 'required'
         ]);
 
         $project = new Task([
@@ -35,6 +53,6 @@ class TaskController extends Controller
 
         $project->save();
 
-        return redirect()->back()->withSuccesses('Новый проект добавлен!');
+//        return redirect()->back()->withSuccesses('Новая задача добавлен!');
     }
 }

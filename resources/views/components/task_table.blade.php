@@ -12,16 +12,23 @@
                 @foreach ($tasks as $task)
                     <tr>
                         <td>
-                            <a class="project-link" href="{{$task['route']}}">
-                                <h5>
-                                    @if($task['completed'] === 1)
+                            <a class="project-link"
+                               href="#"
+                               data-toggle="modal"
+                               data-target="#showTaskModal_{{$task['task_id']}}">
+                                @if($task['completed'] === 1)
+                                    <h5 class="text-muted">
                                         <i class="fas fa-check-square"></i>
-                                    @else
+                                        <del>{{$task['title']}}</del>
+                                    </h5>
+                                @else
+                                    <h5>
                                         <i class="fas fa-square"></i>
-                                    @endif
-                                    {{$task['title']}}
-                                </h5>
+                                        {{$task['title']}}
+                                    </h5>
+                                @endif
                             </a>
+                            @include('components.task', ['task' => $task])
                         </td>
                     </tr>
                 @endforeach

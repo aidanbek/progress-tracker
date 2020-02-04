@@ -14,8 +14,8 @@
                 <form action="{{ route('projects.destroy', $project['project_id'])}}" method="post">
                     @csrf
                     {{method_field('DELETE')}}
-                    <button type="submit" class="btn btn-danger">Да</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-outline-danger">Да</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
                 </form>
             </div>
         </div>
