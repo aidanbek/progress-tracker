@@ -25,7 +25,6 @@
                                        name="completed"
                                        class="custom-control-input text-secondary"
                                        @if($task['completed'] === 1) checked @endif
-                                        value="{{$task['completed']}}"
                                        id="completed_{{$task['task_id']}}">
                                 <label class="custom-control-label" for="completed_{{$task['task_id']}}" >Выполнена?</label>
                             </div>

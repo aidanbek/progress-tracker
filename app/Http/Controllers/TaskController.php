@@ -30,10 +30,8 @@ class TaskController extends Controller
 
         $task = Task::find($id);
 
-        dd($request->get('completed'));
-
         $task->title = $request->get('title');
-        $task->completed = $request->get('completed');
+        $task->completed = is_null($request->get('completed'))? 0: 1;
         $task->save();
 
         return redirect()->back()->withSuccesses('Задача обновлена!');
@@ -53,6 +51,6 @@ class TaskController extends Controller
 
         $project->save();
 
-//        return redirect()->back()->withSuccesses('Новая задача добавлен!');
+        return redirect()->back()->withSuccesses('Новая задача добавлен!');
     }
 }
