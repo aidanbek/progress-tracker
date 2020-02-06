@@ -7,26 +7,16 @@
 {{--        </ul>--}}
 {{--    </div>--}}
 {{--@endif--}}
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
+{{--<div class="container">--}}
+{{--    <div class="row">--}}
+{{--        <div class="col-sm-12">--}}
             @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                    {{session('success')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                @include('components.alert_message', ['message' => session('success'), 'messageType' => 'success'])
             @endif
             @if(session('error'))
-                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    {{session('error')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                @include('components.alert_message', ['message' => session('error'), 'messageType' => 'error'])
             @endif
-        </div>
-    </div>
-</div>
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 

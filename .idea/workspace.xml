@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d9e9786-5b29-4952-9d38-49385cc518d2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/add_project_modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/add_project_modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/add_task_modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/add_task_modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/delete_project_modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/delete_project_modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/edit_project_modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/edit_project_modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/task.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/task_modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/task_table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/task_table.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="9d9e9786-5b29-4952-9d38-49385cc518d2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +161,7 @@
       <workItem from="1580753521586" duration="5605000" />
       <workItem from="1580842192207" duration="3940000" />
       <workItem from="1580915411205" duration="406000" />
-      <workItem from="1581008437445" duration="3627000" />
+      <workItem from="1581008437445" duration="3884000" />
     </task>
     <servers />
   </component>
