@@ -1,6 +1,6 @@
 <a href="#" class="btn btn-outline-secondary" data-toggle="modal"
-   data-target="#createNewЕфылModal"><i class="fas fa-plus-square"></i> Добавить задачу</a>
-<div class="modal fade" id="createNewЕфылModal" tabindex="-1" role="dialog"
+   data-target="#createNewTaskModal"><i class="fas fa-plus-square"></i> Добавить задачу</a>
+<div class="modal fade" id="createNewTaskModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
