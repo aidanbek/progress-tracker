@@ -47,7 +47,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return redirect()->back()->withSuccess('Новый проект добавлен!');
+        return redirect()->back()->withSuccess("Проект '{$request->get('title')}' добавлен!");
     }
 
     public function edit($id)
@@ -67,7 +67,7 @@ class ProjectController extends Controller
         $project->parent_project_id = $request->get('parent_project_id');
         $project->save();
 
-        return redirect()->back()->withSuccess('Данные проекта обновлены!');
+        return redirect()->back()->withSuccess("Данные проекта '{$request->get('title')}' обновлены!");
     }
 
     public function destroy($id)
@@ -78,9 +78,13 @@ class ProjectController extends Controller
             Project::where('project_id', $id)->delete();
         }
         if (is_null($project['parent_project_id'])) {
-            return redirect()->route('projects.index')->withSuccesses('Проект удален!');
+            return redirect()
+                ->route('projects.index')
+                ->withSuccesses("Проект '{$project['title']}' удален!");
         } else {
-            return redirect()->route('projects.show', $project['parent_project_id'])->withSuccess('Проект удален!');
+            return redirect()
+                ->route('projects.show', $project['parent_project_id'])
+                ->withSuccess("Проект '{$project['title']}' удален!");
         }
 
     }
