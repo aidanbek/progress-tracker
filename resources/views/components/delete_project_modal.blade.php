@@ -1,5 +1,5 @@
 <a href="#" class="btn btn-outline-danger" data-toggle="modal"
-   data-target="#deleteProjectModal">Удалить проект</a>
+   data-target="#deleteProjectModal"><i class="fas fa-folder-minus"></i> Удалить проект</a>
 <div class="modal fade" id="deleteProjectModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

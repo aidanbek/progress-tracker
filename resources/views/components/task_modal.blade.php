@@ -32,15 +32,15 @@
                         </div>
                     </div>
                     <span class="float-left">
-                         <button type="submit" class="btn btn-outline-success">Сохранить</button>
-                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
+                         <button type="submit" class="btn btn-success">Сохранить</button>
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
                     </span>
                 </form>
                 <form action="{{ route('tasks.destroy', $task['task_id'])}}" method="post">
                     <span class="float-right">
                         @csrf
                         {{method_field('DELETE')}}
-                        <button type="submit" class="btn btn-outline-danger">Удалить</button>
+                        <button type="submit" class="btn btn-danger">Удалить</button>
                     </span>
                 </form>
             </div>

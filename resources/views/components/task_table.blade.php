@@ -28,7 +28,6 @@
                                     </h5>
                                 @endif
                             </a>
-                            @include('components.task', ['task' => $task])
                         </td>
                     </tr>
                 @endforeach
@@ -36,4 +35,5 @@
             </table>
         </div>
     </div>
+    @each('components.task_modal',$tasks, 'task')
 @endif()

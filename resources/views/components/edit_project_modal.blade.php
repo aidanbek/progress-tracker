@@ -1,5 +1,5 @@
 <a href="#" class="btn btn-outline-secondary" data-toggle="modal"
-   data-target="#showEditProjectModal_{{$project['project_id']}}">Редактировать проект</a>
+   data-target="#showEditProjectModal_{{$project['project_id']}}"><i class="fas fa-edit"></i> Редактировать проект</a>
 <div class="modal fade" id="showEditProjectModal_{{$project['project_id']}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -20,8 +20,8 @@
                                    id="task_title">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-outline-success">Сохранить</button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
                 </form>
             </div>
         </div>

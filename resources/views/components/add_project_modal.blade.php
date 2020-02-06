@@ -1,5 +1,5 @@
 <a href="#" class="btn btn-outline-secondary" data-toggle="modal"
-   data-target="#createNewProjectModal">Добавить проект</a>
+   data-target="#createNewProjectModal"><i class="fas fa-folder-plus"></i> Добавить проект</a>
 <div class="modal fade" id="createNewProjectModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
