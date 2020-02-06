@@ -21,7 +21,7 @@
                         <input type="text" class="form-control" name="title" id="task_title">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-secondary btn-block" id="createTask">
+                        <button type="submit" class="btn btn-outline-success btn-block" id="createTask">
                             Сохранить
                         </button>
                     </div>

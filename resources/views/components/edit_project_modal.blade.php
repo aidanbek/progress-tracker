@@ -20,8 +20,8 @@
                                    id="task_title">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success">Сохранить</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-outline-success">Сохранить</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
                 </form>
             </div>
         </div>
