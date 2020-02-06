@@ -26,12 +26,22 @@
                                        class="custom-control-input text-secondary"
                                        @if($task['completed'] === 1) checked @endif
                                        id="completed_{{$task['task_id']}}">
-                                <label class="custom-control-label" for="completed_{{$task['task_id']}}" >Выполнена?</label>
+                                <label class="custom-control-label"
+                                       for="completed_{{$task['task_id']}}">Выполнена?</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-outline-success">Сохранить</button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
+                    <span class="float-left">
+                         <button type="submit" class="btn btn-outline-success">Сохранить</button>
+                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
+                    </span>
+                </form>
+                <form action="{{ route('tasks.destroy', $task['task_id'])}}" method="post">
+                    <span class="float-right">
+                        @csrf
+                        {{method_field('DELETE')}}
+                        <button type="submit" class="btn btn-outline-danger">Удалить</button>
+                    </span>
                 </form>
             </div>
         </div>

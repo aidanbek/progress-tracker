@@ -11,7 +11,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::Parent()
-            ->with('tasks', 'childProjects','allChildProjects', 'allChildProjects.tasks')
+            ->with('tasks', 'childProjects', 'allChildProjects', 'allChildProjects.tasks')
             ->orderBy('project_id')
             ->get()
             ->toArray();
@@ -36,7 +36,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
+            'title' => 'required',
             'parent_project_id' => 'nullable'
         ]);
 
@@ -47,7 +47,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return redirect()->back()->withSuccesses('Новый проект добавлен!');
+        return redirect()->back()->withSuccess('Новый проект добавлен!');
     }
 
     public function edit($id)
@@ -57,20 +57,30 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'parent_project_id' => 'nullable'
+        ]);
+
+        $project = Project::find($id);
+        $project->title = $request->get('title');
+        $project->parent_project_id = $request->get('parent_project_id');
+        $project->save();
+
+        return redirect()->back()->withSuccess('Данные проекта обновлены!');
     }
 
     public function destroy($id)
     {
         $project = Project::where('project_id', $id)->first()->toArray();
 
-        if(($project['child_task_count'] + $project['child_project_count']) === 0){
+        if (($project['child_task_count'] + $project['child_project_count']) === 0) {
             Project::where('project_id', $id)->delete();
         }
         if (is_null($project['parent_project_id'])) {
             return redirect()->route('projects.index')->withSuccesses('Проект удален!');
         } else {
-            return redirect()->route('projects.show', $project['parent_project_id'])->withSuccesses('Проект удален!');
+            return redirect()->route('projects.show', $project['parent_project_id'])->withSuccess('Проект удален!');
         }
 
     }

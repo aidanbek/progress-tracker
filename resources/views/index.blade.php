@@ -16,7 +16,7 @@
                     <div class="col-sm-12">
                         <div class="card border-0">
                             <div class="card-body pt-0 pb-0">
-                                @include('components.add_project', ['parent_project_id' => null])
+                                @include('components.add_project_modal', ['parent_project_id' => null])
                             </div>
                         </div>
                     </div>

@@ -34,7 +34,8 @@ class TaskController extends Controller
         $task->completed = is_null($request->get('completed'))? 0: 1;
         $task->save();
 
-        return redirect()->back()->withSuccesses('Задача обновлена!');
+        $taskTitle = Task::where('task_id', $id)->first()->toArray()['title'];
+        return redirect()->back()->withSuccess("Задача '{$taskTitle}' обновлена!");
     }
 
     public function store(Request $request)
@@ -51,6 +52,13 @@ class TaskController extends Controller
 
         $project->save();
 
-        return redirect()->back()->withSuccesses('Новая задача добавлен!');
+        return redirect()->back()->withSuccess("Задача '{$request->get('title')}' добавлена!");
+    }
+
+    public function destroy($id)
+    {
+        $taskTitle = Task::where('task_id', $id)->first()->toArray()['title'];
+        Task::find($id)->delete();
+        return redirect()->back()->withSuccess("Задача '{$taskTitle}' удалена!");
     }
 }

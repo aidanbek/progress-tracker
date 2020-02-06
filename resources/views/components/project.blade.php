@@ -17,12 +17,13 @@
                         <div class="card border-0">
                             <div class="card-body pt-0">
                                 <span class="float-left">
-                                @include('components.add_project', ['parent_project_id' => $project['project_id']])
-                                    @include('components.add_task', ['parent_project_id' => $project['project_id']])
+                                    @include('components.add_project_modal', ['parent_project_id' => $project['project_id']])
+                                    @include('components.add_task_modal', ['parent_project_id' => $project['project_id']])
                                 </span>
                                 <span class="float-right">
+                                    @include('components.edit_project_modal', ['project' => $project])
                                     @if(($project['child_task_count'] + $project['child_project_count']) === 0)
-                                        @include('components.delete_project', ['project' => $project])
+                                        @include('components.delete_project_modal', ['project' => $project])
                                     @endif
                                 </span>
                             </div>
