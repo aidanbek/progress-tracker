@@ -40,21 +40,56 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'parent_project_id' => 'required',
-            'completed' => 'nullable'
-        ]);
+        if (!is_null($request->get('multiple_add'))) {
+            $request->validate([
+                'tasks_titles' => 'required',
+                'parent_project_id' => 'required',
+                'completed' => 'nullable'
+            ]);
 
-        $task = new Task([
-            'title' => $request->get('title'),
-            'parent_project_id' => $request->get('parent_project_id'),
-            'completed' => is_null($request->get('completed')) ? 0 : 1
-        ]);
+            dd($request->get('multiple_add'));
+            dd($request->get('tasks_titles'));
 
-        $task->save();
+            $tasks = preg_split('/\n|\r\n?/', $request->get('tasks_titles'));
 
-        return redirect()->back()->withSuccess("Задача '{$request->get('title')}' добавлена!");
+            for ($i = 0; $i < count($tasks); $i++) {
+                $taskTitle = $tasks[$i];
+                $tasks[$i] = [];
+                $tasks[$i]['title'] = $taskTitle;
+                $tasks[$i]['parent_project_id'] = $request->get('parent_project_id');
+                $tasks[$i]['completed'] = is_null($request->get('completed')) ? 0 : 1;
+            }
+
+            foreach($tasks as $task){
+                dd($task);
+
+                $task = new Task([
+                    'title' => $task['title'],
+                    'parent_project_id' => $task['parent_project_id'],
+                    'completed' => $task['completed']
+                ]);
+
+                $task->save();
+            }
+
+            return redirect()->back()->withSuccess("Задачи добавлены!");
+        }
+
+//        $request->validate([
+//            'title' => 'required',
+//            'parent_project_id' => 'required',
+//            'completed' => 'nullable'
+//        ]);
+//
+//        $task = new Task([
+//            'title' => $request->get('title'),
+//            'parent_project_id' => $request->get('parent_project_id'),
+//            'completed' => is_null($request->get('completed')) ? 0 : 1
+//        ]);
+//
+//        $task->save();
+//
+//        return redirect()->back()->withSuccess("Задача '{$request->get('title')}' добавлена!");
     }
 
     public function destroy($id)
