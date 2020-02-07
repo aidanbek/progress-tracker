@@ -1,5 +1,5 @@
-<a href="#" class="btn btn-outline-secondary" data-toggle="modal"
-   data-target="#showEditProjectModal_{{$project['project_id']}}"><i class="fas fa-edit"></i> Редактировать проект</a>
+<a href="#" class="btn btn-outline-secondary btn-block" data-toggle="modal"
+   data-target="#showEditProjectModal_{{$project['project_id']}}"><i class="fas fa-edit"></i> Редактировать</a>
 <div class="modal fade" id="showEditProjectModal_{{$project['project_id']}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

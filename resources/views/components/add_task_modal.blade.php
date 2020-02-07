@@ -1,4 +1,4 @@
-<a href="#" class="btn btn-outline-secondary" data-toggle="modal"
+<a href="#" class="btn btn-outline-secondary btn-block" data-toggle="modal"
    data-target="#createNewTaskModal"><i class="fas fa-plus-square"></i> Добавить задачу</a>
 <div class="modal fade" id="createNewTaskModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">

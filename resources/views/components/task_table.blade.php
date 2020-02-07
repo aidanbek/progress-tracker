@@ -9,6 +9,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @php $counter = 0; @endphp
                 @foreach ($tasks as $task)
                     <tr>
                         <td>
@@ -19,11 +20,13 @@
                                 @if($task['completed'] === 1)
                                     <h5 class="text-muted">
                                         <i class="fas fa-check-square"></i>
+                                        {{++$counter}}
                                         <del>{{$task['title']}}</del>
                                     </h5>
                                 @else
                                     <h5>
                                         <i class="fas fa-square"></i>
+                                        {{++$counter}}
                                         {{$task['title']}}
                                     </h5>
                                 @endif

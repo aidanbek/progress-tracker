@@ -16,16 +16,22 @@
                     <div class="col-sm-12">
                         <div class="card border-0">
                             <div class="card-body pt-0">
-                                <span class="float-left">
-                                    @include('components.add_project_modal', ['parent_project_id' => $project['project_id']])
-                                    @include('components.add_task_modal', ['parent_project_id' => $project['project_id']])
-                                </span>
-                                <span class="float-right">
-                                    @include('components.edit_project_modal', ['project' => $project])
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                                        @include('components.add_project_modal', ['parent_project_id' => $project['project_id']])
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                                        @include('components.add_task_modal', ['parent_project_id' => $project['project_id']])
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                                        @include('components.edit_project_modal', ['project' => $project])
+                                    </div>
                                     @if(($project['child_task_count'] + $project['child_project_count']) === 0)
-                                        @include('components.delete_project_modal', ['project' => $project])
+                                        <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                                            @include('components.delete_project_modal', ['project' => $project])
+                                        </div>
                                     @endif
-                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>
