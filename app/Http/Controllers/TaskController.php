@@ -47,9 +47,6 @@ class TaskController extends Controller
                 'completed' => 'nullable'
             ]);
 
-            dd($request->get('multiple_add'));
-            dd($request->get('tasks_titles'));
-
             $tasks = preg_split('/\n|\r\n?/', $request->get('tasks_titles'));
 
             for ($i = 0; $i < count($tasks); $i++) {
@@ -60,9 +57,7 @@ class TaskController extends Controller
                 $tasks[$i]['completed'] = is_null($request->get('completed')) ? 0 : 1;
             }
 
-            foreach($tasks as $task){
-                dd($task);
-
+            foreach ($tasks as $task) {
                 $task = new Task([
                     'title' => $task['title'],
                     'parent_project_id' => $task['parent_project_id'],
@@ -75,21 +70,21 @@ class TaskController extends Controller
             return redirect()->back()->withSuccess("Задачи добавлены!");
         }
 
-//        $request->validate([
-//            'title' => 'required',
-//            'parent_project_id' => 'required',
-//            'completed' => 'nullable'
-//        ]);
-//
-//        $task = new Task([
-//            'title' => $request->get('title'),
-//            'parent_project_id' => $request->get('parent_project_id'),
-//            'completed' => is_null($request->get('completed')) ? 0 : 1
-//        ]);
-//
-//        $task->save();
-//
-//        return redirect()->back()->withSuccess("Задача '{$request->get('title')}' добавлена!");
+        $request->validate([
+            'title' => 'required',
+            'parent_project_id' => 'required',
+            'completed' => 'nullable'
+        ]);
+
+        $task = new Task([
+            'title' => $request->get('title'),
+            'parent_project_id' => $request->get('parent_project_id'),
+            'completed' => is_null($request->get('completed')) ? 0 : 1
+        ]);
+
+        $task->save();
+
+        return redirect()->back()->withSuccess("Задача '{$request->get('title')}' добавлена!");
     }
 
     public function destroy($id)
