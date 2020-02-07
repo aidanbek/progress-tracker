@@ -21,13 +21,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox"
-                                       name="completed"
-                                       class="custom-control-input text-secondary"
-                                       @if($task['completed'] === 1) checked @endif
-                                       id="completed_{{$task['task_id']}}">
-                                <label class="custom-control-label"
-                                       for="completed_{{$task['task_id']}}">Выполнена?</label>
+                                @include('components.completed_task_checkbox', ['task' => $task])
                             </div>
                         </div>
                     </div>

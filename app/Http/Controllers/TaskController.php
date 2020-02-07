@@ -24,14 +24,14 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'=>'required',
+            'title' => 'required',
             'completed' => 'nullable'
         ]);
 
         $task = Task::find($id);
 
         $task->title = $request->get('title');
-        $task->completed = is_null($request->get('completed'))? 0: 1;
+        $task->completed = is_null($request->get('completed')) ? 0 : 1;
         $task->save();
 
         $taskTitle = Task::where('task_id', $id)->first()->toArray()['title'];
@@ -41,16 +41,18 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'parent_project_id' => 'required'
+            'title' => 'required',
+            'parent_project_id' => 'required',
+            'completed' => 'nullable'
         ]);
 
-        $project = new Task([
+        $task = new Task([
             'title' => $request->get('title'),
             'parent_project_id' => $request->get('parent_project_id'),
+            'completed' => is_null($request->get('completed')) ? 0 : 1
         ]);
 
-        $project->save();
+        $task->save();
 
         return redirect()->back()->withSuccess("Задача '{$request->get('title')}' добавлена!");
     }

@@ -13,3 +13,8 @@ body {
 a, a:hover {
     color: #000;
 }
+
+.table th, .table td {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}

@@ -1,7 +1,7 @@
 @if(count($tasks) > 0)
     <div class="card border-0">
         <div class="card-body mx-n3">
-            <h5 class="card-title">Задачи</h5>
+            <h5 class="card-title pl-3">Задачи</h5>
             <table class="table table-hover mb-0">
                 <thead>
                 <tr>

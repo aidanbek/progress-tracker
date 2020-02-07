@@ -20,6 +20,13 @@
                         <label for="task_title">Название</label>
                         <input type="text" class="form-control" name="title" id="task_title">
                     </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="custom-control custom-checkbox">
+                                @include('components.completed_task_checkbox')
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-outline-success btn-block" id="createTask">
                             Сохранить
