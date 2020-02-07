@@ -1,6 +1,6 @@
 @if(count($projects) > 0)
     <div class="card border-0">
-        <div class="card-body">
+        <div class="card-body mx-n3">
             <h5 class="card-title">Проекты</h5>
             <table class="table table-hover mb-0">
                 <thead>
