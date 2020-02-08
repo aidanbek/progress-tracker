@@ -33,8 +33,7 @@
                                        class="custom-control-input text-secondary"
                                        id="completed_tasks">
                                 <label class="custom-control-label"
-                                       for="completed_tasks">Выполнена?</label>
-
+                                       for="completed_tasks">Выполнены?</label>
                             </div>
                         </div>
                     </div>
