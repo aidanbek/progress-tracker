@@ -1,5 +1,13 @@
-<a href="#" class="btn btn-outline-danger btn-block" data-toggle="modal"
-   data-target="#deleteProjectModal"><i class="fas fa-folder-minus"></i> Удалить проект</a>
+@if(($project['child_task_count'] + $project['child_project_count']) === 0)
+    @php $disabled = '' @endphp
+@else
+    @php $disabled = 'disabled' @endphp
+@endif
+<a href="#" class="btn btn-outline-danger btn-block {{$disabled}}"
+   data-toggle="modal"
+   data-target="#deleteProjectModal">
+    <i class="fas fa-folder-minus"></i> Удалить проект
+</a>
 <div class="modal fade" id="deleteProjectModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -21,3 +29,4 @@
         </div>
     </div>
 </div>
+

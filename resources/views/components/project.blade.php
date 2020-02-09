@@ -26,11 +26,9 @@
                                     <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                                         @include('components.edit_project_modal', ['project' => $project])
                                     </div>
-                                    @if(($project['child_task_count'] + $project['child_project_count']) === 0)
-                                        <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-                                            @include('components.delete_project_modal', ['project' => $project])
-                                        </div>
-                                    @endif
+                                    <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                                        @include('components.delete_project_modal', ['project' => $project])
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
