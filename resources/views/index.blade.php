@@ -1,11 +1,11 @@
 @extends('layout.main')
 @section('title', 'Все проекты')
 @section('content')
-    <div class="row">
-        <div class="col-sm-12">
-            @include('components.project_breadcrumb', ['project' => []])
-        </div>
-    </div>
+{{--    <div class="row">--}}
+{{--        <div class="col-sm-12">--}}
+{{--            @include('components.project_breadcrumb', ['project' => []])--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <div class="row">
         <div class="col-sm-12">
             <div class="card">

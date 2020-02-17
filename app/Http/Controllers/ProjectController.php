@@ -11,7 +11,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::Parent()
-            ->with('tasks', 'childProjects', 'allChildProjects', 'allChildProjects.tasks')
+            ->with('tasks')
             ->orderBy('project_id')
             ->get()
             ->toArray();
@@ -24,9 +24,11 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::where('project_id', $id)
-            ->with('tasks', 'childProjects', 'allParentProjects')
+            ->with('tasks', 'childProjects')
             ->first()
             ->toArray();
+
+        $project['hierarchy_path'] = array_reverse($this->getHierarchyPathToProject($id));
 
         return view('components.project', [
             'project' => $project
@@ -87,6 +89,27 @@ class ProjectController extends Controller
                 ->withSuccess("Проект '{$project['title']}' удален!");
         }
 
+    }
+
+    private function getHierarchyPathToProject($projectId)
+    {
+        $i = 0;
+        $hierarchy = [];
+        do {
+
+            $project = Project::where('project_id', $projectId)
+                ->first(['project_id', 'title', 'parent_project_id']);
+
+            $hierarchy[$i]['project_id'] = $project->project_id;
+            $hierarchy[$i]['title'] = $project->title;
+            $hierarchy[$i]['route'] = $project->route;
+
+            $projectId = $project->parent_project_id;
+            $i++;
+
+        } while (!is_null($project->parent_project_id));
+
+        return $hierarchy;
     }
 
 }
