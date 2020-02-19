@@ -10,11 +10,11 @@
             <div class="progress">
                 <div class="progress-bar bg-secondary"
                      role="progressbar"
-                     style="width: {{$project['completion_percentage']}}%;"
-                     aria-valuenow="{{$project['completion_percentage']}}"
+                     style="width: {{$project['child_task_completion_percentage']}}%;"
+                     aria-valuenow="{{$project['child_task_completion_percentage']}}"
                      aria-valuemin="0"
                      aria-valuemax="100">
-                    {{$project['completion_percentage']}}%
+                    {{$project['child_task_completion_percentage']}}%
                 </div>
             </div>
         </li>
@@ -42,12 +42,12 @@
     @foreach($project['child_projects'] as $childProject)
         <div class="list-group list-group-flush">
             <a href="/project/{{$childProject['project_id']}}"
-               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center @if($childProject['completion_percentage'] === 100) text-muted @endif">
+               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center @if($childProject['child_task_completion_percentage'] === 100) text-muted @endif">
                     <span>
                         <b>{{++$i}})</b>
                         {{$childProject['title']}}
                     </span>
-                <span>{{$childProject['completion_percentage']}}%</span>
+                <span>{{$childProject['child_task_completion_percentage']}}%</span>
             </a>
         </div>
     @endforeach

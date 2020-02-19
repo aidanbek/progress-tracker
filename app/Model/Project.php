@@ -9,11 +9,10 @@ class Project extends Model
     protected $table = 'project';
     protected $primaryKey = 'project_id';
     protected $appends = array(
-        'completion_percentage',
-        'child_task_count',
         'child_project_count',
-        'project_completion_percentage',
-        'task_completion_percentage',
+        'child_task_count',
+        'child_task_completed_count',
+        'child_task_completion_percentage',
         'route'
     );
     protected $fillable = ['title', 'parent_project_id'];
@@ -70,10 +69,25 @@ class Project extends Model
 
     public function completionTotalCount()
     {
-        return $this->tasks()->get()->count() + $this->childProjects()->get()->count();
+        return $this->tasks()->get()->count();
     }
 
-    public function getTaskCompletionPercentageAttribute()
+    public function getChildTaskCompletedCountAttribute()
+    {
+        $tasks = $this->tasks()->get()->toArray();
+
+        if (count($tasks) === 0) return 0;
+
+        $completedTaskCount = 0;
+
+        foreach ($tasks as $task) {
+            $completedTaskCount += $task['completed'];
+        }
+
+        return $completedTaskCount;
+    }
+
+    public function getChildTaskCompletionPercentageAttribute()
     {
         $tasks = $this->tasks()->get()->toArray();
 
@@ -86,28 +100,6 @@ class Project extends Model
         }
 
         return round($completedTaskCount / $this->completionTotalCount() * 100);
-    }
-
-    public function getProjectCompletionPercentageAttribute()
-    {
-        $projects = $this->childProjects()->get()->toArray();
-
-        $projectsCount = count($projects);
-
-        if (count($projects) === 0) return 0;
-
-        $completedProjectPercentage = 0;
-
-        foreach ($projects as $project) {
-            $completedProjectPercentage += round($project['completion_percentage'] / $this->completionTotalCount());
-        }
-
-        return $completedProjectPercentage;
-    }
-
-    public function getCompletionPercentageAttribute()
-    {
-        return $this->getProjectCompletionPercentageAttribute() + $this->getTaskCompletionPercentageAttribute();
     }
 
     public function getRouteAttribute()

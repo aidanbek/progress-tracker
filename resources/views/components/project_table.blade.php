@@ -6,7 +6,6 @@
                 <thead>
                 <tr>
                     <th>Название</th>
-                    <th>Задачи</th>
                     <th>Дочерние проекты</th>
                     <th>Прогресс</th>
                 </tr>
@@ -22,15 +21,18 @@
                                 </h5>
                             </a>
                         </td>
-                        <td><i class="fas fa-list"></i> {{$project['child_task_count']}}</td>
-                        <td><i class="fas fa-list-alt"></i> {{$project['child_project_count']}}</td>
-                        <td>
-                            <span class="badge w-100">
-                                @include('components.progressbar', ['config' => [
-                                    'type' => 'inline',
-                                    'completion_percentage' => $project['completion_percentage']
-                                ]])
-                            </span>
+                        <td><i class="fas fa-folder"></i> {{$project['child_project_count']}}</td>
+                        <td class="">
+                            @if($project['child_task_count'] > 0)
+                                @if($project['child_task_completed_count'] === $project['child_task_count'])
+                                    <h5 class="text-muted">
+                                @else
+                                    <h5>
+                                @endif
+                                     <i class="fas fa-check-square"></i>
+                                    {{$project['child_task_completed_count']}}/{{$project['child_task_count']}}
+                                    </h5>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
