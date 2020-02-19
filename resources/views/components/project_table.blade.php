@@ -6,7 +6,6 @@
                 <thead>
                 <tr>
                     <th>Название</th>
-                    <th>Дочерние проекты</th>
                     <th>Прогресс</th>
                 </tr>
                 </thead>
@@ -18,20 +17,28 @@
                                 <h5>
                                     <i class="fas fa-folder"></i>
                                     {{$project['title']}}
+                                    @if($project['child_project_count'] > 0)
+                                    <span class="badge badge-pill badge-light">
+                                    <i class="fas fa-sitemap"></i>
+                                    {{$project['child_project_count']}}
+                                    </span>
+                                    @endif
                                 </h5>
                             </a>
                         </td>
-                        <td><i class="fas fa-folder"></i> {{$project['child_project_count']}}</td>
                         <td class="">
                             @if($project['child_task_count'] > 0)
                                 @if($project['child_task_completed_count'] === $project['child_task_count'])
                                     <h5 class="text-muted">
+                                        <i class="fas fa-check-square"></i>
+                                        {{$project['child_task_completed_count']}}/{{$project['child_task_count']}}
+                                    </h5>
                                 @else
                                     <h5>
-                                @endif
-                                     <i class="fas fa-check-square"></i>
-                                    {{$project['child_task_completed_count']}}/{{$project['child_task_count']}}
+                                        <i class="fas fa-check-square"></i>
+                                        {{$project['child_task_completed_count']}}/{{$project['child_task_count']}}
                                     </h5>
+                                @endif
                             @endif
                         </td>
                     </tr>
