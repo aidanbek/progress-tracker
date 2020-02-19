@@ -31,7 +31,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        @include('components.add_multiple_projects', ['parent_project_id' => $project['project_id']])
+                                    </div>
+                                    <div class="col-md-6">
                                         @include('components.add_multiple_tasks', ['parent_project_id' => $project['project_id']])
                                     </div>
                                 </div>

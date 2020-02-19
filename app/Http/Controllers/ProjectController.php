@@ -37,6 +37,34 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+        if (!is_null($request->get('multiple_add'))) {
+            $request->validate([
+                'projects_titles' => 'required|string',
+                'parent_project_id' => 'nullable'
+            ]);
+
+            $projects = preg_split('/\n|\r\n?/', $request->get('projects_titles'));
+
+            for ($i = 0; $i < count($projects); $i++) {
+                $projectTitle = $projects[$i];
+                $projects[$i] = [];
+                $projects[$i]['title'] = $projectTitle;
+                $projects[$i]['parent_project_id'] = $request->get('parent_project_id');
+            }
+
+            foreach ($projects as $project) {
+                $project = new Project([
+                    'title' => $project['title'],
+                    'parent_project_id' => $project['parent_project_id'],
+                ]);
+
+                $project->save();
+            }
+
+            return redirect()->back()->withSuccess("Проекты добавлены!");
+        }
+
+
         $request->validate([
             'title' => 'required',
             'parent_project_id' => 'nullable'
