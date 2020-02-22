@@ -1,5 +1,6 @@
 body {
-    background-color: #e2e6ea;
+    /*background-color: #e2e6ea;*/
+    /*filter: invert(100%);*/
 }
 
 .project-link, .project-link:hover {
@@ -17,4 +18,12 @@ a, a:hover {
 .table th, .table td {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+}
+
+.breadcrumb {
+    background-color: #fff;
+}
+
+.card-header {
+    background-color: #fff;
 }

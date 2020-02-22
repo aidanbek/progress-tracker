@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb p-0 mb-n1">
         <li class="breadcrumb-item"><a href="{{route('projects.index')}}">Все проекты</a></li>
         <?php $links = $project['hierarchy_path']; ?>
         @foreach($links as $link)

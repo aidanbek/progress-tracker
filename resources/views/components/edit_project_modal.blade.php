@@ -1,5 +1,8 @@
-<a href="#" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal"
-   data-target="#showEditProjectModal_{{$project['project_id']}}"><i class="fas fa-edit"></i> Редактировать</a>
+@include('components.project_action_button', [
+    'iconTitle' => 'edit',
+    'dataTarget' => "#showEditProjectModal_{$project['project_id']}",
+
+])
 <div class="modal fade" id="showEditProjectModal_{{$project['project_id']}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

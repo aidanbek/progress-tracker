@@ -1,5 +1,8 @@
-<a href="#" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal"
-   data-target="#createNewTasksModal"><i class="fas fa-plus-square"></i> Добавить задачи</a>
+@include('components.project_action_button', [
+    'iconTitle' => 'plus-square',
+    'dataTarget' => "#createNewTasksModal",
+
+])
 <div class="modal fade" id="createNewTasksModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

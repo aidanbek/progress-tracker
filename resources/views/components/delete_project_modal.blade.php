@@ -3,11 +3,12 @@
 @else
     @php $disabled = 'disabled' @endphp
 @endif
-<a href="#" class="btn btn-outline-danger btn-block {{$disabled}} btn-sm"
-   data-toggle="modal"
-   data-target="#deleteProjectModal">
-    <i class="fas fa-folder-minus"></i> Удалить проект
-</a>
+@include('components.project_action_button', [
+    'linkAdditionalClass' => $disabled,
+    'iconTitle' => 'folder-minus',
+    'dataTarget' => "#deleteProjectModal",
+
+])
 <div class="modal fade" id="deleteProjectModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

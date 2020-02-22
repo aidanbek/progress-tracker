@@ -1,5 +1,8 @@
-<a href="#" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal"
-   data-target="#createNewProjectsModal"><i class="fas fa-folder-plus"></i> Добавить проекты</a>
+@include('components.project_action_button', [
+    'iconTitle' => 'folder-plus',
+    'dataTarget' => "#createNewProjectsModal",
+
+])
 <div class="modal fade" id="createNewProjectsModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
