@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-center ">
+                        <div class="col-sm-12 col-md-6 d-flex align-items-center">
                             <h3 class="card-title">{{$project['title']}}</h3>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -20,15 +20,6 @@
                                     @include('components.edit_project_modal', ['project' => $project])
                                     @include('components.delete_project_modal', ['project' => $project])
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card border-0">
-                            <div class="card-body pt-0">
-
                             </div>
                         </div>
                     </div>

@@ -1,13 +1,8 @@
 @if(count($tasks) > 0)
-    <div class="card border-0">
+    <div class="card border-left-0 border-right-0">
         <div class="card-body mx-n3">
             <h5 class="card-title pl-3">Задачи</h5>
             <table class="table table-hover mb-0">
-{{--                <thead>--}}
-{{--                <tr>--}}
-{{--                    <th>Задача</th>--}}
-{{--                </tr>--}}
-{{--                </thead>--}}
                 <tbody>
                 @php $counter = 0; @endphp
                 @foreach ($tasks as $task)
