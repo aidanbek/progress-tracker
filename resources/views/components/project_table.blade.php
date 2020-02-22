@@ -6,6 +6,7 @@
                 <thead>
                 <tr>
                     <th>Название</th>
+                    <th>Дочерние проекты</th>
                     <th>Прогресс</th>
                 </tr>
                 </thead>
@@ -17,14 +18,16 @@
                                 <p class="mb-n1">
                                     <i class="fas fa-folder"></i>
                                     {{$project['title']}}
-                                    @if($project['child_project_count'] > 0)
-                                    <span class="badge badge-pill badge-light">
+                                </p>
+                            </a>
+                        </td>
+                        <td>
+                            @if($project['child_project_count'] > 0)
+                                <span class="badge badge-pill">
                                     <i class="fas fa-sitemap"></i>
                                     {{$project['child_project_count']}}
                                     </span>
-                                    @endif
-                                </p>
-                            </a>
+                            @endif
                         </td>
                         <td class="">
                             @if($project['child_task_count'] > 0)
