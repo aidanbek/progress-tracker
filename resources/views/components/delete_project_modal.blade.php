@@ -3,7 +3,7 @@
 @else
     @php $disabled = 'disabled' @endphp
 @endif
-<a href="#" class="btn btn-outline-danger btn-block {{$disabled}}"
+<a href="#" class="btn btn-outline-danger btn-block {{$disabled}} btn-sm"
    data-toggle="modal"
    data-target="#deleteProjectModal">
     <i class="fas fa-folder-minus"></i> Удалить проект

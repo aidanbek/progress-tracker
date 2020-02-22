@@ -1,4 +1,4 @@
-<a href="#" class="btn btn-outline-secondary btn-block" data-toggle="modal"
+<a href="#" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal"
    data-target="#showEditProjectModal_{{$project['project_id']}}"><i class="fas fa-edit"></i> Редактировать</a>
 <div class="modal fade" id="showEditProjectModal_{{$project['project_id']}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -21,7 +21,7 @@
                                    id="task_title">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-outline-success">Сохранить</button>
+                    <button type="submit" class="btn btn-outline-secondary">Сохранить</button>
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
                 </form>
             </div>

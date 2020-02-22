@@ -1,4 +1,4 @@
-<a href="#" class="btn btn-outline-secondary btn-block" data-toggle="modal"
+<a href="#" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal"
    data-target="#createNewProjectModal"><i class="fas fa-folder-plus"></i> Добавить проект</a>
 <div class="modal fade" id="createNewProjectModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -21,7 +21,7 @@
                         <input type="text" class="form-control" name="title" id="project_title">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-outline-success btn-block" id="createProject">
+                        <button type="submit" class="btn btn-outline-secondary btn-block" id="createProject">
                             Сохранить
                         </button>
                     </div>

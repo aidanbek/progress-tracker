@@ -1,4 +1,4 @@
-<a href="#" class="btn btn-outline-secondary btn-block" data-toggle="modal"
+<a href="#" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal"
    data-target="#createNewTaskModal"><i class="fas fa-plus-square"></i> Добавить задачу</a>
 <div class="modal fade" id="createNewTaskModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-outline-success btn-block" id="createTask">
+                        <button type="submit" class="btn btn-outline-secondary btn-block" id="createTask">
                             Сохранить
                         </button>
                     </div>

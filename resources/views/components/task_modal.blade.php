@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <span class="float-left">
-                         <button type="submit" class="btn btn-outline-success">Сохранить</button>
+                         <button type="submit" class="btn btn-outline-secondary">Сохранить</button>
                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
                     </span>
                 </form>
