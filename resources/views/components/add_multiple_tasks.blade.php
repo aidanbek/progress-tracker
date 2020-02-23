@@ -18,7 +18,6 @@
                     @csrf
                     @if(!is_null($parent_project_id))
                         <input type="hidden" name="parent_project_id" value="{{$parent_project_id}}">
-                        <input type="hidden" name="multiple_add" value="1">
                     @endif
                     <div class="form-group">
                         <label for="tasks_titles">Названия (по строке на каждую)</label>
