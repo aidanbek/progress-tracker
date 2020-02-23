@@ -2,17 +2,20 @@ $(document).ready(function () {
 
     $('a').each(function () {
         const focusableModalInputs = {
-            '#createNewProjectModal': '#project_title',
-            '#createNewTaskModal': '#task_title',
+            '#createNewProjectsModal': '#projects_titles',
+            '#createNewTasksModal': '#tasks_titles',
         };
 
         const modalId = $(this).data('target');
 
         if (focusableModalInputs.hasOwnProperty(modalId)) {
             $(modalId).on('shown.bs.modal', function (e) {
-                console.log('event fired');
                 $(modalId).find(focusableModalInputs[modalId]).focus();
             })
         }
+    });
+
+    $('.card-collapsable-table').find('.collapse-link').on('click', function () {
+        $(this).next().toggle();
     });
 });

@@ -106,4 +106,9 @@ class Project extends Model
     {
         return route('projects.show', $this['project_id']);
     }
+
+    public function notes()
+    {
+        return $this->morphMany(Note::class, 'noteable');
+    }
 }

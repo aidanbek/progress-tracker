@@ -17,3 +17,4 @@ Route::get('/', function(){
 
 Route::resource('projects', 'ProjectController');
 Route::resource('tasks', 'TaskController');
+Route::resource('notes', 'NoteController');

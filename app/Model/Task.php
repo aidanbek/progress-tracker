@@ -29,4 +29,8 @@ class Task extends Model
         return '/task/'.$this['task_id'];
     }
 
+    public function notes()
+    {
+        return $this->morphMany(Note::class, 'noteable');
+    }
 }

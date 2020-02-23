@@ -1,8 +1,8 @@
 @if(count($tasks) > 0)
-    <div class="card border-left-0 border-right-0">
+    <div class="card border-left-0 border-right-0 border-bottom-0 card-collapsable-table">
         <div class="card-body mx-n3">
-            <h5 class="card-title pl-3">Задачи</h5>
-            <table class="table table-hover mb-0">
+            <h5 class="card-title pl-3 collapse-link">Задачи</h5>
+            <table class="table table-hover table-sm mb-0">
                 <tbody>
                 @php $counter = 0; @endphp
                 @foreach ($tasks as $task)
@@ -13,17 +13,17 @@
                                data-toggle="modal"
                                data-target="#showTaskModal_{{$task['task_id']}}">
                                 @if($task['completed'] === 1)
-                                    <h5 class="text-muted">
+                                    <p class="text-muted mb-0">
                                         <i class="fas fa-check-square"></i>
                                         {{++$counter}}
                                         <del>{{$task['title']}}</del>
-                                    </h5>
+                                    </p>
                                 @else
-                                    <h5>
+                                    <p class="mb-0">
                                         <i class="fas fa-square"></i>
                                         {{++$counter}}
                                         {{$task['title']}}
-                                    </h5>
+                                    </p>
                                 @endif
                             </a>
                         </td>
