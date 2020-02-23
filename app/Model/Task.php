@@ -12,7 +12,6 @@ class Task extends Model
         'route'
     );
     protected $fillable = ['title', 'parent_project_id', 'completed'];
-    public $timestamps = false;
 
     public function parentProject()
     {

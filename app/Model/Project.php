@@ -16,7 +16,6 @@ class Project extends Model
         'route'
     );
     protected $fillable = ['title', 'parent_project_id'];
-    public $timestamps = false;
 
     public function scopeParent($query)
     {

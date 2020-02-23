@@ -8,6 +8,8 @@
                     <th>Название</th>
                     <th>Дочерние проекты</th>
                     <th>Прогресс</th>
+                    <th>Создан</th>
+                    <th>Обновлен</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +46,8 @@
                                 @endif
                             @endif
                         </td>
+                        <td> {{$project['created_at']}}</td>
+                        <td> {{$project['updated_at']}}</td>
                     </tr>
                 @endforeach
                 </tbody>
