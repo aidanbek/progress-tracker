@@ -16,7 +16,7 @@
                         <td>
                             <a class="project-link" href="{{$project['route']}}">
                                 <p class="mb-n1">
-                                    <i class="fas fa-folder"></i>
+                                    @include('components.icons.project')
                                     {{$project['title']}}
                                 </p>
                             </a>
@@ -33,12 +33,12 @@
                             @if($project['child_task_count'] > 0)
                                 @if($project['child_task_completed_count'] === $project['child_task_count'])
                                     <p class="text-muted mb-0">
-                                        <i class="fas fa-check-square"></i>
+                                        @include('components.icons.closed_task')
                                         {{$project['child_task_completed_count']}}/{{$project['child_task_count']}}
                                     </p>
                                 @else
                                     <p class="mb-0">
-                                        <i class="fas fa-check-square"></i>
+                                        @include('components.icons.open_task')
                                         {{$project['child_task_completed_count']}}/{{$project['child_task_count']}}
                                     </p>
                                 @endif

@@ -14,13 +14,13 @@
                                data-target="#showTaskModal_{{$task['task_id']}}">
                                 @if($task['completed'] === 1)
                                     <p class="text-muted mb-0">
-                                        <i class="fas fa-check-square"></i>
+                                        @include('components.icons.closed_task')
                                         {{++$counter}}
                                         <del>{{$task['title']}}</del>
                                     </p>
                                 @else
                                     <p class="mb-0">
-                                        <i class="fas fa-square"></i>
+                                        @include('components.icons.open_task')
                                         {{++$counter}}
                                         {{$task['title']}}
                                     </p>

@@ -1,1 +1,54 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+
+
+html {
+    /*filter: invert(100%);*/
+}
+
+.project-link, .project-link:hover {
+    text-decoration: none;
+}
+
+.task-link, .task-link:hover {
+    text-decoration: none;
+}
+
+a, a:hover {
+    color: #000;
+}
+
+.table th, .table td {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.breadcrumb {
+    background-color: #fff;
+}
+
+.card-header {
+    background-color: #fff;
+}
+
+.collapse-link {
+    cursor: pointer;
+}
+
+.dropdown-menu{
+    max-height:400px;
+    overflow-y:auto;
+}
+

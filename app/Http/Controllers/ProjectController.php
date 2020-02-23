@@ -107,13 +107,26 @@ class ProjectController extends Controller
         $i = 0;
         $hierarchy = [];
         do {
-
             $project = Project::where('project_id', $projectId)
                 ->first(['project_id', 'title', 'parent_project_id']);
 
             $hierarchy[$i]['project_id'] = $project->project_id;
             $hierarchy[$i]['title'] = $project->title;
             $hierarchy[$i]['route'] = $project->route;
+
+            $projectSiblings = Project::select(['project_id', 'title', 'parent_project_id'])
+                ->where('project_id', '<>', $projectId)
+                ->where('parent_project_id', $project->parent_project_id)
+                ->orderBy('project_id')
+                ->get();
+
+            $hierarchy[$i]['siblings'] = [];
+
+            foreach ($projectSiblings as $sibling){
+                $hierarchy[$i]['siblings'][$sibling->project_id]['project_id'] = $sibling->project_id;
+                $hierarchy[$i]['siblings'][$sibling->project_id]['title'] = $sibling->title;
+                $hierarchy[$i]['siblings'][$sibling->project_id]['route'] = $sibling->route;
+            }
 
             $projectId = $project->parent_project_id;
             $i++;
