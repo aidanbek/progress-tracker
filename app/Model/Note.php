@@ -8,8 +8,7 @@ class Note extends Model
 {
     protected $table = 'note';
     protected $primaryKey = 'note_id';
-//    protected $fillable = ['content'];
-    public $timestamps = false;
+    protected $fillable = ['content'];
 
     public function project()
     {
