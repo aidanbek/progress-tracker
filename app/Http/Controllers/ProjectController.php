@@ -115,7 +115,6 @@ class ProjectController extends Controller
             $hierarchy[$i]['route'] = $project->route;
 
             $projectSiblings = Project::select(['project_id', 'title', 'parent_project_id'])
-                ->where('project_id', '<>', $projectId)
                 ->where('parent_project_id', $project->parent_project_id)
                 ->orderBy('project_id')
                 ->get();

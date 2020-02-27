@@ -20,9 +20,16 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownProjectMenuLink_{{$link['project_id']}}">
                 @foreach($link['siblings'] as $sibling)
-                    <a class="dropdown-item" href="{{$sibling['route']}}">
-                        @include('components.icons.project') {{$sibling['title']}}
-                    </a>
+                    @if($project['project_id'] !== $sibling['project_id'])
+                        <a class="dropdown-item" href="{{$sibling['route']}}">
+                            @include('components.icons.project') {{$sibling['title']}}
+                        </a>
+                    @else
+                        <a class="dropdown-item active" href="{{$sibling['route']}}">
+                            @include('components.icons.project') {{$sibling['title']}}
+                        </a>
+                    @endif
+
                 @endforeach
             </div>
         @endif

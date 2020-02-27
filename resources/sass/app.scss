@@ -52,3 +52,6 @@ a, a:hover {
     overflow-y:auto;
 }
 
+.dropdown-item.active{
+    background-color: $secondary;
+}

@@ -17326,3 +17326,7 @@ a:hover {
   overflow-y: auto;
 }
 
+.dropdown-item.active {
+  background-color: #6c757d;
+}
+
