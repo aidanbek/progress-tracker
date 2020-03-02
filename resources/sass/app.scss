@@ -27,7 +27,7 @@ html {
 }
 
 a, a:hover {
-    color: #000;
+    color: $black;
 }
 
 .table th, .table td {
@@ -36,11 +36,11 @@ a, a:hover {
 }
 
 .breadcrumb {
-    background-color: #fff;
+    background-color: $white;
 }
 
 .card-header {
-    background-color: #fff;
+    background-color: $white;
 }
 
 .collapse-link {

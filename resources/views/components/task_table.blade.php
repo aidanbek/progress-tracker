@@ -16,7 +16,7 @@
                                     <p class="text-muted mb-0">
                                         @include('components.icons.closed_task')
                                         {{++$counter}}
-                                        <del>{{$task['title']}}</del>
+                                        {{$task['title']}}
                                     </p>
                                 @else
                                     <p class="mb-0">
