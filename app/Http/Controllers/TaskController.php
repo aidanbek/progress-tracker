@@ -34,9 +34,6 @@ class TaskController extends Controller
         $task->title = $request->get('title');
         $task->completed = is_null($request->get('completed')) ? 0 : 1;
 
-        $parentProject = Project::find($task->parent_project_id);
-        $parentProject->touch();
-
         $task->save();
 
         $taskTitle = Task::where('task_id', $id)->first()->toArray()['title'];
