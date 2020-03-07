@@ -44,8 +44,8 @@ class TaskController extends Controller
     {
         $request->validate([
             'tasks_titles' => 'required',
-            'parent_project_id' => 'required',
-            'completed' => 'nullable'
+            'parent_project_id' => 'required|int|exists:project,project_id',
+            'completed' => 'nullable|string'
         ]);
 
         $tasks = preg_split('/\n|\r\n?/', $request->get('tasks_titles'));

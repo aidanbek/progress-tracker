@@ -28,8 +28,26 @@
                                   rows="10"></textarea>
                     </div>
                     <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            @include('components.radio_input', [
+                                'id' => 'customRadio1',
+                                'name' => 'additionalAction',
+                                'checked' => 'checked',
+                                'title' => 'Ничего'
+                            ])
+                        </div>
+                        <div class="custom-control custom-radio">
+                            @include('components.radio_input', [
+                                'id' => 'customRadio2',
+                                'name' => 'additionalAction',
+                                'value' => 'open_last',
+                                'title' => 'Открыть (последний)'
+                            ])
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-outline-secondary btn-block" id="createProject">
-                            Сохранить
+                            Добавить
                         </button>
                     </div>
                 </form>

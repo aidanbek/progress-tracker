@@ -39,7 +39,7 @@ class ProjectController extends Controller
     {
         $request->validate([
             'projects_titles' => 'required|string',
-            'parent_project_id' => 'nullable'
+            'parent_project_id' => 'nullable|int|exists:project,project_id'
         ]);
 
         $projects = preg_split('/\n|\r\n?/', $request->get('projects_titles'));
@@ -51,6 +51,8 @@ class ProjectController extends Controller
             $projects[$i]['parent_project_id'] = $request->get('parent_project_id');
         }
 
+        $projectId = null;
+
         foreach ($projects as $project) {
             $project = new Project([
                 'title' => $project['title'],
@@ -58,9 +60,25 @@ class ProjectController extends Controller
             ]);
 
             $project->save();
+            $projectId = $project->project_id;
         }
 
-        return redirect()->back()->withSuccess("Проекты добавлены!");
+        $message = "Проекты добавлены!";
+
+        if ($request->additionalAction){
+            switch ($request->additionalAction){
+                case 'open_last': {
+                    return redirect()
+                        ->route('projects.show', $projectId)
+                        ->withSuccess($message);
+                }
+                default:
+                    throw new Exception("Invalid additionalAction value");
+                    break;
+            }
+        }
+
+        return redirect()->back()->withSuccess($message);
     }
 
     public function edit($id)
@@ -90,14 +108,17 @@ class ProjectController extends Controller
         if (($project['child_task_count'] + $project['child_project_count']) === 0) {
             Project::where('project_id', $id)->delete();
         }
+
+        $message = "Проект '{$project['title']}' удален!";
+
         if (is_null($project['parent_project_id'])) {
             return redirect()
                 ->route('projects.index')
-                ->withSuccesses("Проект '{$project['title']}' удален!");
+                ->withSuccesses($message);
         } else {
             return redirect()
                 ->route('projects.show', $project['parent_project_id'])
-                ->withSuccess("Проект '{$project['title']}' удален!");
+                ->withSuccess($message);
         }
 
     }
