@@ -16,6 +16,7 @@ class Project extends Model
         'route'
     );
     protected $fillable = ['title', 'parent_project_id'];
+    protected $touches = ['parentProject'];
 
     public function scopeParent($query)
     {

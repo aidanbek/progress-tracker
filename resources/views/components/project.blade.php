@@ -23,6 +23,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row text-muted">
+                        <div class="col-sm-6">
+                            Создан: {{$project['created_at']}}
+                        </div>
+                        <div class="col-sm-6">
+                            Обновлен:  {{$project['updated_at']}}
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">

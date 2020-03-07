@@ -12,6 +12,7 @@ class Task extends Model
         'route'
     );
     protected $fillable = ['title', 'parent_project_id', 'completed'];
+    protected $touches = ['parentProject'];
 
     public function parentProject()
     {
