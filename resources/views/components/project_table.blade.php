@@ -6,10 +6,6 @@
                 <thead>
                 <tr>
                     <th>Название</th>
-                    <th>Дочерние проекты</th>
-                    <th>Прогресс</th>
-                    <th>Создан</th>
-                    <th>Обновлен</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -17,37 +13,18 @@
                     <tr>
                         <td>
                             <a class="project-link" href="{{$project['route']}}">
-                                <p class="mb-n1">
+                                <span class="mb-n1">
                                     @include('components.icons.project')
                                     {{$project['title']}}
-                                </p>
+                                </span>
                             </a>
-                        </td>
-                        <td>
-                            @if($project['child_project_count'] > 0)
-                                <p class="mb-0">
+                            @if(($project['child_project_count'] + $project['child_task_count']) > 0)
+                                <span class="text-muted mb-0">
                                     <i class="fas fa-sitemap"></i>
-                                    {{$project['child_project_count']}}
-                                </p>
+                                    {{$project['child_project_count'] + $project['child_task_count']}}
+                                </span>
                             @endif
                         </td>
-                        <td class="">
-                            @if($project['child_task_count'] > 0)
-                                @if($project['child_task_completed_count'] === $project['child_task_count'])
-                                    <p class="text-muted mb-0">
-                                        @include('components.icons.closed_task')
-                                        {{$project['child_task_completed_count']}}/{{$project['child_task_count']}}
-                                    </p>
-                                @else
-                                    <p class="mb-0">
-                                        @include('components.icons.open_task')
-                                        {{$project['child_task_completed_count']}}/{{$project['child_task_count']}}
-                                    </p>
-                                @endif
-                            @endif
-                        </td>
-                        <td> {{$project['created_at']}}</td>
-                        <td> {{$project['updated_at']}}</td>
                     </tr>
                 @endforeach
                 </tbody>
