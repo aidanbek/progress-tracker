@@ -1,7 +1,7 @@
 @include('components.project_action_button', [
     'iconTitle' => 'edit',
     'dataTarget' => "#showEditProjectModal_{$project['project_id']}",
-
+    'linkTitle' => 'Редактировать'
 ])
 <div class="modal fade" id="showEditProjectModal_{{$project['project_id']}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">

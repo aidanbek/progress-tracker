@@ -9,12 +9,12 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-12 col-md-6 d-flex align-items-center">
+                        <div class="col-sm-12 col-md-9 d-flex align-items-center">
                             <h3 class="card-title">{{$project['title']}}</h3>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-3">
                             <div class="row">
-                                <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                <div class="list-group w-100">
                                     @include('components.add_multiple_projects', ['parent_project_id' => $project['project_id']])
                                     @include('components.add_multiple_tasks', ['parent_project_id' => $project['project_id']])
                                     @include('components.edit_project_modal', ['project' => $project])
@@ -23,6 +23,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer text-muted">
                     <div class="row text-muted">
                         <div class="col-sm-6">
                             Создан: {{$project['created_at']}}

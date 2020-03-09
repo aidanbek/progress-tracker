@@ -1,7 +1,7 @@
 @include('components.project_action_button', [
     'iconTitle' => 'plus-square',
     'dataTarget' => "#createNewTasksModal",
-
+    'linkTitle' => 'Добавить задачи'
 ])
 <div class="modal fade" id="createNewTasksModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">

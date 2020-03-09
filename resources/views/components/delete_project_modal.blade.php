@@ -7,7 +7,7 @@
     'linkAdditionalClass' => $disabled,
     'iconTitle' => 'folder-minus',
     'dataTarget' => "#deleteProjectModal",
-
+    'linkTitle' => 'Удалить'
 ])
 <div class="modal fade" id="deleteProjectModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">

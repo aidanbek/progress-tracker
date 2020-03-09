@@ -1,7 +1,7 @@
 @include('components.project_action_button', [
     'iconTitle' => 'folder-plus',
     'dataTarget' => "#createNewProjectsModal",
-
+    'linkTitle' => 'Добавить проекты'
 ])
 <div class="modal fade" id="createNewProjectsModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">

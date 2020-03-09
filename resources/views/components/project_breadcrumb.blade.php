@@ -29,7 +29,6 @@
                             @include('components.icons.project') {{$sibling['title']}}
                         </a>
                     @endif
-
                 @endforeach
             </div>
         @endif
