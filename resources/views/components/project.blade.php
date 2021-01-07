@@ -23,6 +23,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+                            @include('components.progressbar', ['config' => $project])
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
                     <div class="row text-muted">
