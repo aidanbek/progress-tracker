@@ -33,4 +33,14 @@ class Task extends Model
     {
         return $this->morphMany(Note::class, 'noteable');
     }
+
+    public function scopeCompleted($query)
+    {
+        return $query->where('completed', 1);
+    }
+
+    public function scopeUncompleted($query)
+    {
+        return $query->where('completed', 0);
+    }
 }

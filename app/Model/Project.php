@@ -59,47 +59,30 @@ class Project extends Model
 
     public function getChildTaskCountAttribute()
     {
-        return count($this->tasks()->get()->toArray());
+        return $this->tasks()->get()->count();
     }
 
     public function getChildProjectCountAttribute()
     {
-        return count($this->childProjects()->get()->toArray());
-    }
-
-    public function completionTotalCount()
-    {
-        return $this->tasks()->get()->count();
+        return $this->childProjects()->get()->count();
     }
 
     public function getChildTaskCompletedCountAttribute()
     {
-        $tasks = $this->tasks()->get()->toArray();
-
-        if (count($tasks) === 0) return 0;
-
-        $completedTaskCount = 0;
-
-        foreach ($tasks as $task) {
-            $completedTaskCount += $task['completed'];
-        }
-
-        return $completedTaskCount;
+        return $this->tasks()->completed()->get()->count();
     }
 
     public function getChildTaskCompletionPercentageAttribute()
     {
-        $tasks = $this->tasks()->get()->toArray();
+        $allTaskCount = $this->tasks()->get()->count();
 
-        if (count($tasks) === 0) return 0;
-
-        $completedTaskCount = 0;
-
-        foreach ($tasks as $task) {
-            $completedTaskCount += $task['completed'];
+        if ($allTaskCount === 0) {
+            return 0;
         }
 
-        return round($completedTaskCount / $this->completionTotalCount() * 100);
+        $completedTaskCount = $this->tasks()->completed()->get()->count();
+
+        return round($completedTaskCount / $allTaskCount * 100);
     }
 
     public function getRouteAttribute()
