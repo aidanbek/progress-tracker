@@ -44,7 +44,7 @@ class TaskController extends Controller
     {
         $request->validate([
             'tasks_titles' => 'required',
-            'parent_id' => 'required|int|exists:project,id',
+            'parent_project_id' => 'required|int|exists:projects,id',
             'completed' => 'nullable|string'
         ]);
 
@@ -54,14 +54,14 @@ class TaskController extends Controller
             $taskTitle = $tasks[$i];
             $tasks[$i] = [];
             $tasks[$i]['title'] = $taskTitle;
-            $tasks[$i]['parent_id'] = $request->get('parent_id');
+            $tasks[$i]['parent_project_id'] = $request->get('parent_project_id');
             $tasks[$i]['completed'] = is_null($request->get('completed')) ? 0 : 1;
         }
 
         foreach ($tasks as $task) {
             $task = new Task([
                 'title' => $task['title'],
-                'parent_id' => $task['parent_id'],
+                'parent_project_id' => $task['parent_project_id'],
                 'completed' => $task['completed']
             ]);
 

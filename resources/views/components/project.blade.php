@@ -15,8 +15,8 @@
                         <div class="col-sm-12 col-md-3">
                             <div class="row">
                                 <div class="list-group w-100">
-                                    @include('components.add_multiple_projects', ['parent_id' => $project['id']])
-                                    @include('components.add_multiple_tasks', ['parent_id' => $project['id']])
+                                    @include('components.add_multiple_projects', ['parent_project_id' => $project['id']])
+                                    @include('components.add_multiple_tasks', ['parent_project_id' => $project['id']])
                                     @include('components.edit_project_modal', ['project' => $project])
                                     @include('components.delete_project_modal', ['project' => $project])
                                 </div>

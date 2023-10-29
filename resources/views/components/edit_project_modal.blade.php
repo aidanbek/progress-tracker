@@ -17,7 +17,7 @@
                 <form class="" action="{{ route('projects.update', $project['id'])}}" method="post">
                     @csrf
                     {{method_field('PATCH')}}
-                    <input type="hidden" name="parent_id" value="{{$project['parent_id']}}">
+                    <input type="hidden" name="parent_project_id" value="{{$project['parent_project_id']}}">
                     <div class="form-group row">
                         <div class="col-12">
                             <input type="text" class="form-control" value="{{$project['title']}}" name="title"

@@ -39,7 +39,7 @@ class ProjectController extends Controller
     {
         $request->validate([
             'projects_titles' => 'required|string',
-            'parent_id' => 'nullable|int|exists:project,id'
+            'parent_project_id' => 'nullable|int|exists:projects,id'
         ]);
 
         $projects = preg_split('/\n|\r\n?/', $request->get('projects_titles'));
@@ -48,7 +48,7 @@ class ProjectController extends Controller
             $projectTitle = $projects[$i];
             $projects[$i] = [];
             $projects[$i]['title'] = $projectTitle;
-            $projects[$i]['parent_id'] = $request->get('parent_id');
+            $projects[$i]['parent_project_id'] = $request->get('parent_project_id');
         }
 
         $projectId = null;
@@ -56,7 +56,7 @@ class ProjectController extends Controller
         foreach ($projects as $project) {
             $project = new Project([
                 'title' => $project['title'],
-                'parent_id' => $project['parent_id'],
+                'parent_project_id' => $project['parent_project_id'],
             ]);
 
             $project->save();
@@ -90,12 +90,12 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'parent_id' => 'nullable'
+            'parent_project_id' => 'nullable'
         ]);
 
         $project = Project::find($id);
         $project->title = $request->get('title');
-        $project->parent_id = $request->get('parent_id');
+        $project->parent_project_id = $request->get('parent_project_id');
         $project->save();
 
         return redirect()->back()->withSuccess("Данные проекта '{$request->get('title')}' обновлены!");
@@ -111,13 +111,13 @@ class ProjectController extends Controller
 
         $message = "Проект '{$project['title']}' удален!";
 
-        if (is_null($project['parent_id'])) {
+        if (is_null($project['parent_project_id'])) {
             return redirect()
                 ->route('projects.index')
                 ->withSuccesses($message);
         } else {
             return redirect()
-                ->route('projects.show', $project['parent_id'])
+                ->route('projects.show', $project['parent_project_id'])
                 ->withSuccess($message);
         }
 
@@ -129,14 +129,14 @@ class ProjectController extends Controller
         $hierarchy = [];
         do {
             $project = Project::where('id', $projectId)
-                ->first(['id', 'title', 'parent_id']);
+                ->first(['id', 'title', 'parent_project_id']);
 
             $hierarchy[$i]['id'] = $project->id;
             $hierarchy[$i]['title'] = $project->title;
             $hierarchy[$i]['route'] = $project->route;
 
-            $projectSiblings = Project::select(['id', 'title', 'parent_id'])
-                ->where('parent_id', $project->parent_id)
+            $projectSiblings = Project::select(['id', 'title', 'parent_project_id'])
+                ->where('parent_project_id', $project->parent_project_id)
                 ->orderBy('id')
                 ->get();
 
@@ -148,10 +148,10 @@ class ProjectController extends Controller
                 $hierarchy[$i]['siblings'][$sibling->id]['route'] = $sibling->route;
             }
 
-            $projectId = $project->parent_id;
+            $projectId = $project->parent_project_id;
             $i++;
 
-        } while (!is_null($project->parent_id));
+        } while (!is_null($project->parent_project_id));
 
         return $hierarchy;
     }

@@ -16,8 +16,8 @@
             <div class="modal-body">
                 <form action="{{ route('note.store')}}" method="post">
                     @csrf
-                    @if(isset($project) && !is_null($project['parent_id']))
-                        <input type="hidden" name="id" value="{{$project['parent_id']}}">
+                    @if(isset($project) && !is_null($project['parent_project_id']))
+                        <input type="hidden" name="id" value="{{$project['parent_project_id']}}">
                     @endif
                     @if(isset($task) && !is_null($task['id']))
                         <input type="hidden" name="id" value="{{$task['id']}}">

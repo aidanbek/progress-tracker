@@ -14,7 +14,7 @@ class Task extends Model
 
     public function parentProject()
     {
-        return $this->belongsTo(Project::class, 'parent_project_id', 'project_id');
+        return $this->belongsTo(Project::class, 'parent_project_id', 'id');
     }
 
     public function allParentProjects()

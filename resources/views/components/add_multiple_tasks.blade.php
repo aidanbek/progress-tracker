@@ -16,8 +16,8 @@
             <div class="modal-body">
                 <form action="{{ route('tasks.store')}}" method="post">
                     @csrf
-                    @if(!is_null($parent_id))
-                        <input type="hidden" name="parent_id" value="{{$parent_id}}">
+                    @if(!is_null($parent_project_id))
+                        <input type="hidden" name="parent_project_id" value="{{$parent_project_id}}">
                     @endif
                     <div class="form-group">
                         <label for="tasks_titles">Названия (по строке на каждую)</label>

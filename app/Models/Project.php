@@ -13,17 +13,17 @@ class Project extends Model
         'child_task_completion_percentage',
         'route'
     );
-    protected $fillable = ['title', 'parent_id'];
+    protected $fillable = ['title', 'parent_project_id'];
     protected $touches = ['parentProject'];
 
     public function scopeParent($query)
     {
-        return $query->whereNull('parent_id');
+        return $query->whereNull('parent_project_id');
     }
 
     public function scopeChild($query)
     {
-        return $query->whereNotNull('parent_id');
+        return $query->whereNotNull('parent_project_id');
     }
 
     public function tasks()
@@ -35,7 +35,7 @@ class Project extends Model
 
     public function parentProject()
     {
-        return $this->belongsTo(Project::class, 'parent_id', 'id');
+        return $this->belongsTo(Project::class, 'parent_project_id', 'id');
     }
 
     public function allParentProjects()
@@ -46,7 +46,7 @@ class Project extends Model
     public function childProjects()
     {
         return $this
-            ->hasMany(Project::class, 'parent_id', 'id')
+            ->hasMany(Project::class, 'parent_project_id', 'id')
             ->orderBy('id');
     }
 
