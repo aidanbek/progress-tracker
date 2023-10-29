@@ -1,4 +1,4 @@
-<div class="modal fade" id="showTaskModal_{{$task['task_id']}}" tabindex="-1" role="dialog"
+<div class="modal fade" id="showTaskModal_{{$task['id']}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="" action="{{ route('tasks.update', $task['task_id'])}}" method="post">
+                <form class="" action="{{ route('tasks.update', $task['id'])}}" method="post">
                     @csrf
                     {{method_field('PATCH')}}
                     <div class="form-group row">
@@ -30,7 +30,7 @@
                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
                     </span>
                 </form>
-                <form action="{{ route('tasks.destroy', $task['task_id'])}}" method="post">
+                <form action="{{ route('tasks.destroy', $task['id'])}}" method="post">
                     <span class="float-right">
                         @csrf
                         {{method_field('DELETE')}}

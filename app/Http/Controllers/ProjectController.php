@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Project;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +12,7 @@ class ProjectController extends Controller
     {
         $projects = Project::Parent()
             ->with('tasks')
-            ->orderBy('project_id')
+            ->orderBy('id')
             ->get()
             ->toArray();
 
@@ -23,7 +23,7 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        $project = Project::where('project_id', $id)
+        $project = Project::where('id', $id)
             ->with('tasks', 'childProjects')
             ->first()
             ->toArray();
@@ -39,7 +39,7 @@ class ProjectController extends Controller
     {
         $request->validate([
             'projects_titles' => 'required|string',
-            'parent_project_id' => 'nullable|int|exists:project,project_id'
+            'parent_id' => 'nullable|int|exists:project,id'
         ]);
 
         $projects = preg_split('/\n|\r\n?/', $request->get('projects_titles'));
@@ -48,7 +48,7 @@ class ProjectController extends Controller
             $projectTitle = $projects[$i];
             $projects[$i] = [];
             $projects[$i]['title'] = $projectTitle;
-            $projects[$i]['parent_project_id'] = $request->get('parent_project_id');
+            $projects[$i]['parent_id'] = $request->get('parent_id');
         }
 
         $projectId = null;
@@ -56,11 +56,11 @@ class ProjectController extends Controller
         foreach ($projects as $project) {
             $project = new Project([
                 'title' => $project['title'],
-                'parent_project_id' => $project['parent_project_id'],
+                'parent_id' => $project['parent_id'],
             ]);
 
             $project->save();
-            $projectId = $project->project_id;
+            $projectId = $project->id;
         }
 
         $message = "Проекты добавлены!";
@@ -90,12 +90,12 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'parent_project_id' => 'nullable'
+            'parent_id' => 'nullable'
         ]);
 
         $project = Project::find($id);
         $project->title = $request->get('title');
-        $project->parent_project_id = $request->get('parent_project_id');
+        $project->parent_id = $request->get('parent_id');
         $project->save();
 
         return redirect()->back()->withSuccess("Данные проекта '{$request->get('title')}' обновлены!");
@@ -103,21 +103,21 @@ class ProjectController extends Controller
 
     public function destroy($id)
     {
-        $project = Project::where('project_id', $id)->first()->toArray();
+        $project = Project::where('id', $id)->first()->toArray();
 
         if (($project['child_task_count'] + $project['child_project_count']) === 0) {
-            Project::where('project_id', $id)->delete();
+            Project::where('id', $id)->delete();
         }
 
         $message = "Проект '{$project['title']}' удален!";
 
-        if (is_null($project['parent_project_id'])) {
+        if (is_null($project['parent_id'])) {
             return redirect()
                 ->route('projects.index')
                 ->withSuccesses($message);
         } else {
             return redirect()
-                ->route('projects.show', $project['parent_project_id'])
+                ->route('projects.show', $project['parent_id'])
                 ->withSuccess($message);
         }
 
@@ -128,30 +128,30 @@ class ProjectController extends Controller
         $i = 0;
         $hierarchy = [];
         do {
-            $project = Project::where('project_id', $projectId)
-                ->first(['project_id', 'title', 'parent_project_id']);
+            $project = Project::where('id', $projectId)
+                ->first(['id', 'title', 'parent_id']);
 
-            $hierarchy[$i]['project_id'] = $project->project_id;
+            $hierarchy[$i]['id'] = $project->id;
             $hierarchy[$i]['title'] = $project->title;
             $hierarchy[$i]['route'] = $project->route;
 
-            $projectSiblings = Project::select(['project_id', 'title', 'parent_project_id'])
-                ->where('parent_project_id', $project->parent_project_id)
-                ->orderBy('project_id')
+            $projectSiblings = Project::select(['id', 'title', 'parent_id'])
+                ->where('parent_id', $project->parent_id)
+                ->orderBy('id')
                 ->get();
 
             $hierarchy[$i]['siblings'] = [];
 
             foreach ($projectSiblings as $sibling){
-                $hierarchy[$i]['siblings'][$sibling->project_id]['project_id'] = $sibling->project_id;
-                $hierarchy[$i]['siblings'][$sibling->project_id]['title'] = $sibling->title;
-                $hierarchy[$i]['siblings'][$sibling->project_id]['route'] = $sibling->route;
+                $hierarchy[$i]['siblings'][$sibling->id]['id'] = $sibling->id;
+                $hierarchy[$i]['siblings'][$sibling->id]['title'] = $sibling->title;
+                $hierarchy[$i]['siblings'][$sibling->id]['route'] = $sibling->route;
             }
 
-            $projectId = $project->parent_project_id;
+            $projectId = $project->parent_id;
             $i++;
 
-        } while (!is_null($project->parent_project_id));
+        } while (!is_null($project->parent_id));
 
         return $hierarchy;
     }

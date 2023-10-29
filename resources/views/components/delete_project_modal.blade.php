@@ -20,7 +20,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('projects.destroy', $project['project_id'])}}" method="post">
+                <form action="{{ route('projects.destroy', $project['id'])}}" method="post">
                     @csrf
                     {{method_field('DELETE')}}
                     <button type="submit" class="btn btn-outline-danger">Да</button>

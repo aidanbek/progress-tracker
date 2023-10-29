@@ -11,7 +11,7 @@
                             <a class="project-link"
                                href="#"
                                data-toggle="modal"
-                               data-target="#showTaskModal_{{$task['task_id']}}">
+                               data-target="#showTaskModal_{{$task['id']}}">
                                 @if($task['completed'] === 1)
                                     <p class="text-muted mb-0">
                                         @include('components.icons.closed_task')

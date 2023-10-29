@@ -11,16 +11,16 @@
         </a>
         @if(count($link['siblings']) > 0)
             <button type="button"
-                    id="dropdownProjectMenuLink_{{$link['project_id']}}"
+                    id="dropdownProjectMenuLink_{{$link['id']}}"
                     class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownProjectMenuLink_{{$link['project_id']}}">
+            <div class="dropdown-menu" aria-labelledby="dropdownProjectMenuLink_{{$link['id']}}">
                 @foreach($link['siblings'] as $sibling)
-                    @if($project['project_id'] !== $sibling['project_id'])
+                    @if($project['id'] !== $sibling['id'])
                         <a class="dropdown-item" href="{{$sibling['route']}}">
                             @include('components.icons.project') {{$sibling['title']}}
                         </a>

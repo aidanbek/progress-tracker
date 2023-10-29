@@ -5,15 +5,13 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 // Font Awesome
-@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '~@fortawesome/fontawesome-free/scss/solid.scss';
-@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import "@fortawesome/fontawesome-free/css/all.css";
 
 // bootstrap-select
-@import '~bootstrap-select/dist/css/bootstrap-select.min.css';
+@import 'bootstrap-select/dist/css/bootstrap-select.min.css';
 
 html {
     /*filter: invert(100%);*/

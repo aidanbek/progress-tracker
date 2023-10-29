@@ -12,7 +12,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="row">
                                 <div class="btn-group w-100" role="group" aria-label="Basic example">
-                                    @include('components.add_multiple_projects', ['parent_project_id' => null])
+                                    @include('components.add_multiple_projects', ['parent_id' => null])
                                 </div>
                             </div>
                         </div>

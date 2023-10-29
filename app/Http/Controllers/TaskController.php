@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Project;
-use App\Model\Task;
+use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -15,7 +15,7 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        $task = Task::where('task_id', $id)
+        $task = Task::where('id', $id)
             ->first()
             ->toArray();
 
@@ -36,7 +36,7 @@ class TaskController extends Controller
 
         $task->save();
 
-        $taskTitle = Task::where('task_id', $id)->first()->toArray()['title'];
+        $taskTitle = Task::where('id', $id)->first()->toArray()['title'];
         return redirect()->back()->withSuccess("Задача '{$taskTitle}' обновлена!");
     }
 
@@ -44,7 +44,7 @@ class TaskController extends Controller
     {
         $request->validate([
             'tasks_titles' => 'required',
-            'parent_project_id' => 'required|int|exists:project,project_id',
+            'parent_id' => 'required|int|exists:project,id',
             'completed' => 'nullable|string'
         ]);
 
@@ -54,14 +54,14 @@ class TaskController extends Controller
             $taskTitle = $tasks[$i];
             $tasks[$i] = [];
             $tasks[$i]['title'] = $taskTitle;
-            $tasks[$i]['parent_project_id'] = $request->get('parent_project_id');
+            $tasks[$i]['parent_id'] = $request->get('parent_id');
             $tasks[$i]['completed'] = is_null($request->get('completed')) ? 0 : 1;
         }
 
         foreach ($tasks as $task) {
             $task = new Task([
                 'title' => $task['title'],
-                'parent_project_id' => $task['parent_project_id'],
+                'parent_id' => $task['parent_id'],
                 'completed' => $task['completed']
             ]);
 
@@ -73,7 +73,7 @@ class TaskController extends Controller
 
     public function destroy($id)
     {
-        $taskTitle = Task::where('task_id', $id)->first()->toArray()['title'];
+        $taskTitle = Task::where('id', $id)->first()->toArray()['title'];
         Task::find($id)->delete();
         return redirect()->back()->withSuccess("Задача '{$taskTitle}' удалена!");
     }
